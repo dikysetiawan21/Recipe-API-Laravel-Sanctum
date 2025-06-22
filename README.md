@@ -1,61 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Food Recommendation API 🍽️
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🚀 About The Project
 
-## About Laravel
+Food Recommendation API is a powerful Laravel-based backend service that provides intelligent food recommendations based on various factors like mood, occasion, dietary restrictions, and weather conditions. This API helps users discover perfect meal suggestions tailored to their current situation and preferences.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### ✨ Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Personalized Food Recommendations**: Get food suggestions based on multiple parameters
+- **Comprehensive Food Database**: Detailed food information including ingredients, preparation time, and nutritional values
+- **Multi-factor Filtering**: Filter by category, cuisine type, dietary restrictions, mood, occasion, and weather conditions
+- **User Authentication**: Secure JWT-based authentication system
+- **RESTful API**: Clean and consistent API endpoints following REST principles
+- **Search Functionality**: Search foods by name, ingredients, or tags
+- **Responsive Design**: Optimized for both web and mobile applications
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Built With
 
-## Learning Laravel
+- **Backend Framework**: Laravel 12
+- **Authentication**: JWT (JSON Web Tokens)
+- **Database**: SQLite (can be configured for MySQL/PostgreSQL)
+- **API Documentation**: OpenAPI/Swagger (recommended for future implementation)
+- **Validation**: Laravel's built-in validation system
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Getting Started
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Prerequisites
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2 or higher
+- Composer (Dependency Manager for PHP)
+- SQLite (or MySQL/PostgreSQL)
+- Web Server (Apache/Nginx) or PHP's built-in server
 
-## Laravel Sponsors
+### Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone the repository
+   ```bash
+   git clone https://github.com/dikysetiawan21/Recipe-API-Laravel-Sanctum.git
+   cd Recipe-API-Laravel-Sanctum
+   ```
 
-### Premium Partners
+2. Install PHP dependencies
+   ```bash
+   composer install
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. Copy the environment file and generate application key
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Contributing
+4. Configure your database in the `.env` file
+   ```env
+   DB_CONNECTION=sqlite
+   DB_DATABASE=/absolute/path/to/your/database.sqlite
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Create the SQLite database file
+   ```bash
+   touch database/database.sqlite
+   ```
 
-## Code of Conduct
+6. Run database migrations and seeders
+   ```bash
+   php artisan migrate --seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. Start the development server
+   ```bash
+   php artisan serve
+   ```
 
-## Security Vulnerabilities
+The API will be available at `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📚 API Endpoints
 
-## License
+### Authentication
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login user
+- `POST /api/auth/logout` - Logout user (requires authentication)
+- `POST /api/auth/refresh` - Refresh authentication token
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Foods
+- `GET /api/foods` - Get all foods
+- `POST /api/foods` - Create a new food (admin only)
+- `GET /api/foods/{id}` - Get food details
+- `PUT /api/foods/{id}` - Update food (admin only)
+- `DELETE /api/foods/{id}` - Delete food (admin only)
+- `GET /api/foods/recommend` - Get food recommendations based on parameters
+
+### Categories
+- `GET /api/categories` - Get all categories
+- `POST /api/categories` - Create a new category (admin only)
+- `GET /api/categories/{id}` - Get category details
+- `PUT /api/categories/{id}` - Update category (admin only)
+- `DELETE /api/categories/{id}` - Delete category (admin only)
+
+### Other Resources
+Similar endpoints are available for:
+- Cuisine Types
+- Dietary Restrictions
+- Moods
+- Occasions
+- Weather Conditions
+
+## 🛡️ Authentication
+
+This API uses JWT (JSON Web Tokens) for authentication. To access protected routes, include the token in the request header:
+
+```
+Authorization: Bearer YOUR_JWT_TOKEN
+```
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 👨‍💻 Author
+
+**Diky Setiawan**  
+📧 Email: dikysetiawan21@gmail.com  
+🔗 GitHub: [@dikysetiawan21](https://github.com/dikysetiawan21)  
+💼 LinkedIn: [Diky Setiawan](https://linkedin.com/in/dikysetiawan21)
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com/) - The PHP Framework For Web Artisans
+- [JWT Auth](https://github.com/tymondesigns/jwt-auth) - For API Authentication
+- [Laravel Documentation](https://laravel.com/docs) - For the excellent documentation
+
+---
+
+<div align="center">
+  <p>Made with ❤️ using Laravel</p>
+  <p>© 2025 Recipe API. All rights reserved.</p>
+</div>
